@@ -4,6 +4,8 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import { StyleSheet, Text, View, Button, } from 'react-native';
 
+import Quiz1a from './quiz1a'
+import Quiz1b from './quiz1b'
 import FlexDemo1Screen from './FlexDemo1'
 
 
@@ -21,7 +23,9 @@ const MyStack = () => {
           //options={{ title: 'Welcome' }}
         />
 
-        <Stack.Screen name="Profile" component={ProfileScreen} />
+        <Stack.Screen name="quiz1a" component={Quiz1a} />
+
+        <Stack.Screen name="quiz1b" component={Quiz1b} />
 
         <Stack.Screen name="FlexDemo1" component={FlexDemo1Screen} />
 
@@ -40,17 +44,17 @@ const HomeScreen = ({ navigation }) => {
                      justifyContent: 'space-around', }}>
 
         <Button
-          title="Go to Jane's profile"
+          title="My quiz 1a result"
           onPress={() =>
-            navigation.navigate('Profile', { name: 'Jane', greeting:'Hi!' })
+            navigation.navigate('quiz1a')
                // we're passing a parameter name:'Jane' to the Profile component!
           }
         />
 
         <Button
-          title="Go to Tim's profile"
+          title="My quiz 1b result"
           onPress={() =>
-            navigation.navigate('Profile', { name: 'Tim', greeting:'Konichi-wa' })
+            navigation.navigate('quiz1b')
                // we're passing a parameter name:'Jane' to the Profile component!
           }
         />
