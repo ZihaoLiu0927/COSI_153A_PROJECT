@@ -3,6 +3,14 @@ import { Button, StyleSheet, Text, TextInput, View, Image } from "react-native";
 
 
 const PhotoID = ({name,imageurl}) => {
+  const [image,setImage] = React.useState(imageurl)
+  const [editing,setEditing] = React.useState(false)
+  let editView =
+  <TextInput
+      style={{fontSize:24}}
+      placeholder="url"
+      onChangeText={text => {setImage(text)}}
+  />
       return (
   <View style={styles.container}>
     <View style={{flex:1}}>
@@ -11,6 +19,7 @@ const PhotoID = ({name,imageurl}) => {
     </View>
 
     <View style={{flex:1, alignItems: 'center', justifyContent: 'center'}}>
+      <Button title="edit" onPress={()=> setEditing(!editing)} />
       <Text> {name} </Text>
     </View>
   </View>
