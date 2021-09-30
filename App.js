@@ -19,11 +19,12 @@ import WebViewer from './components/WebViewer'
 */
 import Pomodoros from './components/Pomodoros'
 import WebViewer from './components/WebViewer'
+import PropDemo from './components/PropDemo.js'
+import Profile from './components/Profile.js'
 
 
 export default function App() {
   return (
-    //<Pomodoros />
-    <WebViewer/>
+    <WebViewer />
   );
 }
