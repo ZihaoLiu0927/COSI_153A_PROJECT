@@ -21,10 +21,10 @@ import Pomodoros from './components/Pomodoros'
 import WebViewer from './components/WebViewer'
 import PropDemo from './components/PropDemo.js'
 import Profile from './components/Profile.js'
-
+import NavDemo1 from './components/NavDemo1'
 
 export default function App() {
   return (
-    <WebViewer />
+    <NavDemo1 />
   );
 }
