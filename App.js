@@ -5,6 +5,6 @@ import NavPage from './components/NavPage'
 // const App = () => {...}
 export default function App() {
   return (
-    <NavPage />
+    <NavPage/>
   );
 }
