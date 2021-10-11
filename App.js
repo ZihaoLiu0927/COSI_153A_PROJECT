@@ -16,15 +16,18 @@ import ShowPage from './components/ShowPage'
 import ShowPage from './components/ShowPage'
 import Counter from './components/Counter.js'
 import WebViewer from './components/WebViewer'
-*/
+
+import Profile from './components/Profile'
 import Pomodoros from './components/Pomodoros'
 import WebViewer from './components/WebViewer'
-import PropDemo from './components/PropDemo.js'
-import Profile from './components/Profile.js'
-import NavDemo1 from './components/NavDemo1'
+*/
+import CounterDemo from './components/CounterDemo'
+import ContextDemo from './components/ContextDemo'
+import MathResult from './components/MathQuiz'
+import Pomodoros from './components/Pomodoros'
 
 export default function App() {
   return (
-    <NavDemo1 />
+    <MathResult n="16"/>
   );
 }

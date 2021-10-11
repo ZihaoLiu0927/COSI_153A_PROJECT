@@ -15,6 +15,31 @@ const Pomodoros = () => {
   useEffect(() => {getData()}
            ,[])
 
+  const getDataUGLY = () => {
+
+          // the '@profile_info' can be any string
+          AsyncStorage.getItem('@pomodoros')
+            .then((jsonValue) => {
+              let data = null
+              if (jsonValue!=null) {
+                data = JSON.parse(jsonValue)
+                setPomodoros(data)
+                console.log('just set Info, Name and Email')
+              } else {
+                console.log('just read a null value from Storage')
+                // this happens the first time the app is loaded
+                // as there is nothing in storage...
+                setPomodoros([])
+                setDateTime("")
+                setGoal("")
+                setResult("")
+              }
+            })
+           .catch((error)=> {   console.log("error in getData ")})
+
+
+  }
+
   const getData = async () => {
         try {
           // the '@profile_info' can be any string
@@ -51,6 +76,18 @@ const Pomodoros = () => {
           console.log("error in storeData ")
           console.dir(e)
           // saving error
+        }
+  }
+
+  const clearAllUGLY = () => {
+        try {
+          console.log('in clearData')
+          AsyncStorage.clear()
+             .then(() => {console.log('cleared the data')})
+        } catch(e) {
+          console.log("error in clearData ")
+          console.dir(e)
+          // clear error
         }
   }
 
