@@ -129,20 +129,6 @@ const MathResult = (props) => {
     setTotal(total+1)
   };
 
-
-  /* synchronous processing problem in this way?
-   the line hecked? setChecked(false) : setChecked(true) is executed with the if-else statement
-  const processClick = async() => {
-    checked? setChecked(false) : setChecked(true);
-    if (checked) {
-      checkAns()
-      } else {
-      generateRandomNumber()
-      setTextInput("")
-    }
-  }; */
-
-
   const processClick = async() => {
     if (!checked) {
       setChecked(true);

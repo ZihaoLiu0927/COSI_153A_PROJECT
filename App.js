@@ -1,9 +1,6 @@
 import React from 'react';
 /*
 import {View} from 'react-native';
-<<<<<<< HEAD
-import NavPage from './components/NavPage'
-=======
 import NavDemo1 from './components/NavDemo1'
 import Quiz1 from './components/Quiz1.js'
 import Quiz1a from './components/Quiz1a.js'
@@ -28,14 +25,11 @@ import CounterDemo from './components/CounterDemo'
 import ContextDemo from './components/ContextDemo'
 import MathResult from './components/MathQuiz'
 import Pomodoros from './components/Pomodoros'
->>>>>>> main
+import NavPage from './components/NavPage'
+
 
 export default function App() {
   return (
-<<<<<<< HEAD
-    <NavPage/>
-=======
-    <MathResult n="16"/>
->>>>>>> main
+    <MathResult n = "12" />
   );
 }
