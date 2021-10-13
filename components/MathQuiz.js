@@ -21,7 +21,7 @@ const MathResult = (props) => {
   useEffect(() => {getData()},[])
   useEffect(() => {generateRandomNumber()}, [])
   useEffect(() => {setRatio(parseFloat(correct/total, 4).toPrecision(4) * 100)})
-  useEffect(() => {saveAsyncData()})
+  useEffect(() => {saveAsyncData()}, [correct, total])
 
   const debugView =
     (<View>
