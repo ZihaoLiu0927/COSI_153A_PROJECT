@@ -1,8 +1,29 @@
-import React from 'react';
-import { StyleSheet, Text, View, Image, TextInput, Button } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { StyleSheet, Text, View, Image, TextInput, Button, Alert } from 'react-native';
 
 // const App = () => {...}
 export default function Dow() {
+  const [removeImg, setRemoveImg] = useState(true);
+
+  const askPurpose = () => {
+    Alert.alert("what you want to do?",
+                "what you want to do?",
+      [
+        {
+          text: "upload new image",
+          onPress: setRemoveImg(false),
+          //console.log("upload new image"),
+        },
+        {
+          text: "remove image",
+          onPress: setRemoveImg(true),
+          //console.log("remove image"),
+        }
+      ]
+    );
+
+  }
+
   return (
     <View style={styles.container}>
 
@@ -13,6 +34,10 @@ export default function Dow() {
                   DOW summary
               </Text>
 
+        </View>
+
+        <View>
+          <Button onPress = {askPurpose}/>
         </View>
 
       </View>

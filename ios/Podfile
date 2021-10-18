@@ -18,4 +18,8 @@ target 'HelloTim' do
   #     flipper_post_install(installer)
   #   end
   # end
+  pod 'RNSVG', :path => '../node_modules/react-native-svg'
+
+  pod 'react-native-webview', :path => '../node_modules/react-native-webview'
+
 end

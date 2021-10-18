@@ -7,6 +7,7 @@ import AboutInfo from './AboutPage'
 import SelectList from './SelectStock'
 import SPstat from './SPstat'
 import Dowstat from './Dowstat'
+import UserProfile from './UserProfile'
 
 
 const Stack = createNativeStackNavigator();
@@ -19,7 +20,6 @@ const MyStack = () => {
         <Stack.Screen
           name="Home"
           component={HomeScreen}
-          //options={{ title: 'Welcome' }}
         />
 
         <Stack.Screen name="AboutInfo" component={AboutInfo} />
@@ -29,6 +29,8 @@ const MyStack = () => {
         <Stack.Screen name="Dowstat" component={Dowstat} />
 
         <Stack.Screen name="SelectList" component={SelectList} />
+
+        <Stack.Screen name="UserProfile" component={UserProfile} />
 
 
       </Stack.Navigator>
@@ -41,7 +43,7 @@ const HomeScreen = ({ navigation }) => {
   const listRef = React.useRef(null);
   const moveToAbout = () => {
     // `current` points to the mounted text input element
-    listRef.current.scrollTo({y:650, animated: true})
+    listRef.current.scrollTo({y:600, animated: true})
   };
 
   return (
@@ -75,6 +77,12 @@ const HomeScreen = ({ navigation }) => {
             navigation.navigate('SelectList')
           }
         > SELECTED STOCK LIST </TouchableOpacity>
+
+        <TouchableOpacity style={styles.loginButton}
+          onPress={() =>
+            navigation.navigate('UserProfile')
+          }
+        > YOUR PROFILE </TouchableOpacity>
 
     </View>
 
@@ -133,6 +141,19 @@ const styles = StyleSheet.create({
     fontSize: 15,
     width: 180,
   },
+
+  loginButton: {
+    borderWidth: 3,
+    borderColor: "lightblue",
+    backgroundColor: "green",
+    justifyContent: 'center',
+    alignItems: "center",
+    color: "white",
+    fontSize: 15,
+    width: 180,
+  },
+
+
 
   aboutInfo: {
     flex: 20,
