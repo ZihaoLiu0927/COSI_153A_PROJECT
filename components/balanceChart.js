@@ -1,13 +1,6 @@
 // Include react
-import React from "react";
-import ReactDOM from "react-dom";
-import ReactFC from "react-fusioncharts";
-import FusionCharts from "fusioncharts";
-import Column2D from "fusioncharts/fusioncharts.charts";
-import FusionTheme from "fusioncharts/themes/fusioncharts.theme.fusion";
-
-// Adding the chart and theme as dependency to the core fusioncharts
-ReactFC.fcRoot(FusionCharts, Column2D, FusionTheme);
+import React, { Component } from "react";
+import { VictoryBar } from "victory";
 
 const chartData = [
   {
@@ -85,7 +78,9 @@ const chartConfigs = {
 // STEP 4 - Creating the DOM element to pass the react-fusioncharts component
 class MyChart extends React.Component {
   render() {
-    return (<ReactFC {...chartConfigs} />);
+    return (
+        <VictoryBar />
+      );
   }
 }
 
