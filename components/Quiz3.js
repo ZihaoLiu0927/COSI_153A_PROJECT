@@ -2,7 +2,7 @@ import React, { useState, useEffect, Component }  from 'react';
 import { View, Button,
          StyleSheet,
          Text, TextInput } from 'react-native';
-
+         
 
 export default function Quiz3() {
 
