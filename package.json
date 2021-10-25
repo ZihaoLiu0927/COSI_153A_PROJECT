@@ -7,11 +7,13 @@
     "start": "react-native start"
   },
   "dependencies": {
+    "@polygon.io/client-js": "^3.0.0",
     "@react-native-async-storage/async-storage": "~1.15.0",
     "@react-native-community/datetimepicker": "3.5.2",
     "@react-navigation/native": "^6.0.2",
     "@react-navigation/native-stack": "^6.1.0",
     "apsl-react-native-button": "^3.1.1",
+    "date-fns": "^2.25.0",
     "echarts-for-react": "^3.0.1",
     "expo": "~42.0.1",
     "expo-cli": "^4.11.0",
