@@ -76,7 +76,7 @@ const chartConfigs = {
 };
 
 // STEP 4 - Creating the DOM element to pass the react-fusioncharts component
-class MyChart extends Component {
+class MyChart extends React.Component {
   render() {
     return (
         <VictoryBar />
