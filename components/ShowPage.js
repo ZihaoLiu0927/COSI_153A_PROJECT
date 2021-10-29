@@ -23,7 +23,9 @@ const ShowPage = ({url}) => {
         Show Page {url}
       </Text>
       <View style={{flexDirection:'row'}}>
-        <Text>{text} </Text>
+        <Text>
+          {text}
+        </Text>
 
       </View>
 

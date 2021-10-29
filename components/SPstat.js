@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View, Image, TextInput, Button } from 'react-native';
 
 // const App = () => {...}
-export default function SP() {
+export default function SPstat() {
   return (
     <View style={styles.container}>
 
@@ -26,10 +26,9 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'stretch',
-    justifyContent: 'stretch',
+    justifyContent: 'space-between',
     flexDirection:'column',
-    margin:'20px',
-    border:'thick solid black',
+    margin:20,
   },
 
 });

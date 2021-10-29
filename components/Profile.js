@@ -130,7 +130,7 @@ const Profile = (props) => {
                       }}
                 />
               <Text>
-               name={name} email={email} info={JSON.stringify(info)}
+                name={name} email={email} info={JSON.stringify(info)}
               </Text>
 
             </View>

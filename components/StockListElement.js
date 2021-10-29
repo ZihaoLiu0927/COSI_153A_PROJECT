@@ -1,7 +1,7 @@
 // Include react
 import React, { Component, useEffect, useState } from "react";
 import { StyleSheet, Text, View, Image, TextInput, Button, FlatList} from 'react-native';
-import {VictoryLine, VictoryChart, VictoryTheme, VictoryCursorContainer, VictoryGroup} from "victory";
+import {VictoryLine, VictoryChart, VictoryTheme, VictoryCursorContainer, VictoryGroup} from "victory-native";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import {getData, dateString} from "./GetDataFromPolygon";
@@ -38,7 +38,7 @@ export default function StockListElement(props) {
             data: { stroke: "red", strokeWidth: 0.5 },
             labels: { angle: -90, fill: "white", fontSize: 1 }
           }}
-          x = "idx" y = "vw" size size = {20} />
+          x = "idx" y = "vw" size = {20} />
          </VictoryChart>
       </View>
 

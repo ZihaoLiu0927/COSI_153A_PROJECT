@@ -1,28 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, Image, TextInput, Button, Alert } from 'react-native';
+import { StyleSheet, Text, View, Image, TextInput, Button, Alert} from 'react-native';
 
 // const App = () => {...}
-export default function Dow() {
-  const [removeImg, setRemoveImg] = useState(true);
-
-  const askPurpose = () => {
-    Alert.alert("what you want to do?",
-                "what you want to do?",
-      [
-        {
-          text: "upload new image",
-          onPress: setRemoveImg(false),
-          //console.log("upload new image"),
-        },
-        {
-          text: "remove image",
-          onPress: setRemoveImg(true),
-          //console.log("remove image"),
-        }
-      ]
-    );
-
-  }
+export default function DOWstat() {
 
   return (
     <View style={styles.container}>
@@ -37,7 +17,7 @@ export default function Dow() {
         </View>
 
         <View>
-          <Button onPress = {askPurpose}/>
+          <Button title="button"/>
         </View>
 
       </View>
@@ -51,10 +31,9 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'stretch',
-    justifyContent: 'stretch',
+    justifyContent: 'space-between',
     flexDirection:'column',
-    margin:'20px',
-    border:'thick solid black',
+    margin: 20,
   },
 
 });

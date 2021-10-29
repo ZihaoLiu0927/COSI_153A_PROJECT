@@ -25,11 +25,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    alignItems: 'stretch',
-    justifyContent: 'stretch',
+    alignItems: 'flex-start',
+    justifyContent: 'flex-start',
     flexDirection:'column',
-    margin:'20px',
-    border:'thick solid black',
+    margin:20,
   },
 
 });

@@ -1,5 +1,6 @@
 import React from 'react';
 // import MathResult from './components/MathQuiz'
+import 'react-native-gesture-handler';
 import NavPage from './components/NavPage'
 // import UserImagePicker from './components/ImagePicker.js'
 
@@ -13,9 +14,9 @@ import GetDataFromPolygon from './components/GetDataFromPolygon'
 export default function App() {
 
   return (
-    <SelectStock />
+    <NavPage />
+    //<SelectStock />
     //<UserProfile />
     //<GetDataFromPolygon />
-    //<NavPage/>
   )
 }

@@ -38,7 +38,10 @@ const WebViewer = () => {
 
     {url!=''?
         <ShowPage url={url} />:
-        <Text>"nothing yet"</Text>}
+        <Text>
+          nothing yet
+        </Text>
+    }
 
     </ScrollView>
   );

@@ -1,22 +1,23 @@
 import React from 'react';
+import 'react-native-gesture-handler';
 import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { polygonClient, restClient, websocketClient } from "@polygon.io/client-js";
 import StockListElement from "./StockListElement";
-
 // const App = () => {...}
+
+  const LISTHEIGHT = 100;
 
   const Stack = createNativeStackNavigator();
 
   const SelectStock = () => {
-    return (
-      <NavigationContainer>
-        <Stack.Navigator>
 
+    return (
+        <Stack.Navigator>
           <Stack.Screen
-            name="Home"
-            component={HomeScreen}
+            name="List of Stock Price"
+            component={StockScreen}
           />
 
           <Stack.Screen name="GOOGLE">
@@ -35,41 +36,50 @@ import StockListElement from "./StockListElement";
             {()=> <StockListElement symbol="AAPL"/>}
           </Stack.Screen>
 
+          <Stack.Screen name="NVDA">
+            {()=> <StockListElement symbol="NVDA"/>}
+          </Stack.Screen>
+
+          <Stack.Screen name="AMD">
+            {()=> <StockListElement symbol="AMD"/>}
+          </Stack.Screen>
 
         </Stack.Navigator>
-      </NavigationContainer>
     );
   };
 
 
-  let StockListUnit =(symbol, navigation)=> (
-    <View style={styles.stockList}>
-      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate(symbol)} >
-        <View style={{flexDirection: "row"}}>
-          <View style={{flex:1, height: 110, backgroundColor: "green", alignItems: 'stretch',justifyContent: 'stretch'}}>
-            <Text style={{flex:1, color: "white"}}>
-              {symbol}
-            </Text>
-            <Text style={{color: "white"}}>
-              STOCK FULL NAME HERE
-            </Text>
-          </View>
-          <View style={{flex:4, height: 110, backgroundColor: "yellow", alignItems: 'stretch',justifyContent: 'stretch'}}>
-            <Text style={{color: "black"}}>
-              Figure here
-            </Text>
-          </View>
-          <View style={{flex:1, height: 110, backgroundColor: "blue", alignItems: 'stretch',justifyContent: 'stretch'}}>
-            <Text style={{flex: 1, color: "white"}}>
-              Price here
-            </Text>
-          </View>
-        </View>
-      </TouchableOpacity>
-    </View>
-  );
+  const StockListUnit = (symbol, navigation)=> {
 
-  const HomeScreen = ({ navigation }) => {
+    return(
+      <View style={styles.stockList}>
+        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate(symbol)} >
+          <View style={{flexDirection: "row"}}>
+            <View style={{flex:1, height: LISTHEIGHT, backgroundColor: "green", alignItems: 'flex-start',justifyContent: 'space-between'}}>
+              <Text style={{color: "white"}}>
+                {symbol}
+              </Text>
+              <Text style={{color: "white"}}>
+                STOCK FULL NAME HERE
+              </Text>
+            </View>
+            <View style={{flex:4, height: LISTHEIGHT, backgroundColor: "yellow", alignItems: 'center',justifyContent: 'center'}}>
+              <Text style={{color: "black"}}>
+                Figure here
+              </Text>
+            </View>
+            <View style={{flex:1, height: LISTHEIGHT, backgroundColor: "blue", alignItems: 'center',justifyContent: 'center'}}>
+              <Text style={{flex: 1, color: "white"}}>
+                Price here
+              </Text>
+            </View>
+          </View>
+        </TouchableOpacity>
+      </View>
+    );
+  };
+
+  const StockScreen = ({ navigation }) => {
     const listRef = React.useRef(null);
     const moveToAbout = () => {
       // `current` points to the mounted text input element
@@ -90,22 +100,25 @@ import StockListElement from "./StockListElement";
           {StockListUnit("AMAZON", navigation)}
           {StockListUnit("FACEBOOK", navigation)}
           {StockListUnit("APPLE", navigation)}
+          {StockListUnit("NVDA", navigation)}
+          {StockListUnit("AMD", navigation)}
       </View>
 
 
     );
   }
 
+const stockListStyle = "space-between"
+const stockListAlignItems = "stretch"
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    alignItems: 'stretch',
-    justifyContent: 'stretch',
+    alignItems: stockListAlignItems,
+    justifyContent: stockListStyle,
     flexDirection:'column',
-    margin:'20px',
-    border:'thick solid black',
+    margin:20,
   },
 
   item: {
@@ -116,16 +129,17 @@ const styles = StyleSheet.create({
 
   stockList: {
     flex: 1,
-    height: 110,
-    alignItems: 'stretch',
-    justifyContent: 'stretch',
+    height: LISTHEIGHT,
+    alignItems: stockListAlignItems,
+    justifyContent: stockListStyle,
     backgroundColor: "black",
+    borderWidth: 2,
   },
 
   button: {
-    height: 101,
-    alignItems: 'stretch',
-    justifyContent: 'stretch',
+    height: LISTHEIGHT,
+    alignItems: stockListAlignItems,
+    justifyContent: stockListStyle,
     backgroundColor: "red",
   }
 });

@@ -1,42 +1,35 @@
 import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { StyleSheet, Text, View, TouchableOpacity, ScrollView, SafeAreaView, FlatList} from 'react-native';
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import { StyleSheet, Text, View, TouchableOpacity, ScrollView, SafeAreaView, FlatList, Image} from 'react-native';
 
-import AboutInfo from './AboutPage'
-import SelectList from './SelectStock'
 import SPstat from './SPstat'
-import Dowstat from './Dowstat'
+import SelectStock from './SelectStock'
 import UserProfile from './UserProfile'
 
 
-const Stack = createNativeStackNavigator();
+const Drawer = createDrawerNavigator();
 
 const MyStack = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
 
-        <Stack.Screen
-          name="Home"
-          component={HomeScreen}
-        />
+      <Drawer.Navigator initialRouteName="Home">
 
-        <Stack.Screen name="AboutInfo" component={AboutInfo} />
+        <Drawer.Screen name="Home" component={HomeScreen} />
 
-        <Stack.Screen name="SPstat" component={SPstat} />
+        <Drawer.Screen name="SPstat" component={SPstat} />
 
-        <Stack.Screen name="Dowstat" component={Dowstat} />
+        <Drawer.Screen name="SelectStock" component={SelectStock} />
 
-        <Stack.Screen name="SelectList" component={SelectList} />
+        <Drawer.Screen name="UserProfile" component={UserProfile} />
 
-        <Stack.Screen name="UserProfile" component={UserProfile} />
-
-
-      </Stack.Navigator>
+      </Drawer.Navigator>
     </NavigationContainer>
   );
 };
+
 
 
 const HomeScreen = ({ navigation }) => {
@@ -50,44 +43,18 @@ const HomeScreen = ({ navigation }) => {
     <ScrollView style={styles.container} ref={listRef}>
     <View style={{   flex:1,
                      flexDirection: 'row',
-                     margin:"2px",
-                     padding:'0px',
+                     margin:2,
                      justifyContent: 'space-evenly'}}>
 
-        <TouchableOpacity style={styles.neviButton}
-          onPress={moveToAbout}
-        > ABOUT THE APP </TouchableOpacity>
-
-        <TouchableOpacity style={styles.neviButton}
-          onPress={() =>
-            navigation.navigate('SPstat')
-          }
-        > S&P 500 STATISTICS </TouchableOpacity>
-
-
-        <TouchableOpacity style={styles.neviButton}
-          onPress={() =>
-            navigation.navigate('Dowstat')
-          }
-        > DOW STATISTICS </TouchableOpacity>
-
-
-        <TouchableOpacity style={styles.neviButton}
-          onPress={() =>
-            navigation.navigate('SelectList')
-          }
-        > SELECTED STOCK LIST </TouchableOpacity>
-
-        <TouchableOpacity style={styles.loginButton}
-          onPress={() =>
-            navigation.navigate('UserProfile')
-          }
-        > YOUR PROFILE </TouchableOpacity>
+        <TouchableOpacity onPress={moveToAbout}
+            style={styles.neviButton}>
+          <Text style={styles.neviButtonText}> Stock View </Text>
+        </TouchableOpacity>
 
     </View>
 
-    <View style={{flex:18,}}>
-      <img src={require('../img/stock.jpeg')} style={{flex:1}} />
+    <View style={{flex:18, justifyContent: 'center', alignItems: 'center'}}>
+      <Image source={require('../img/stock.jpeg')} style={{flex:1, width: 400, height: 500}} />
     </View>
 
     <View style={styles.aboutInfo}>
@@ -96,27 +63,38 @@ const HomeScreen = ({ navigation }) => {
       </Text>
 
       <Text style={{fontWeight: 'bold', paddingTop: 10, fontSize:20}}>
-      Components used
+        Components used
       </Text>
 
       <Text>
-      {'\u2B24'} Image: A React component for displaying different types of images, including network images, static resources, temporary local images, and images from local disk, such as the camera roll.
+        {'\u2B24'} Image: A React component for displaying different types of images, including network images, static resources, temporary local images, and images from local disk, such as the camera roll.
       </Text>
 
       <Text>
-      {'\u2B24'} Text: A React component for displaying text which supports nesting, styling, and touch handling.
+        {'\u2B24'} Text: A React component for displaying text which supports nesting, styling, and touch handling.
       </Text>
 
       <Text>
-      {'\u2B24'} TextInput: A React component for inputting text into the app via a keyboard.
+        {'\u2B24'} TextInput: A React component for inputting text into the app via a keyboard.
       </Text>
 
       <Text>
-      {'\u2B24'} View: A most fundamental component for building UI.
+        {'\u2B24'} View: A most fundamental component for building UI.
       </Text>
 
       <Text>
-      {'\u2B24'} ScrollView: A React component for buidling UI that is more flexible and provides a set of scrolling functions.
+        {'\u2B24'} ScrollView: A React component for buidling UI that is more flexible and provides a set of scrolling functions.
+      </Text>
+
+      <Text style={{fontWeight: 'bold', paddingTop: 20, fontSize:15}}>
+        Author: Zihao Liu
+      </Text>
+
+      <Text style={{fontWeight: 'bold', paddingTop: 1, fontSize:15}}>
+            Last Update: October 29, 2021
+      </Text>
+
+      <Text style={{fontWeight: 'bold', paddingTop: 1, fontSize:15}}>
       </Text>
     </View>
 
@@ -127,37 +105,43 @@ const HomeScreen = ({ navigation }) => {
 
 const styles = StyleSheet.create({
   container: {
-    padding: 30,
+    padding: 10,
     paddingTop: 0,
   },
 
   neviButton: {
-    borderWidth: 3,
+    borderWidth: 1,
     borderColor: "lightblue",
-    backgroundColor: "red",
+    backgroundColor: "black",
     justifyContent: 'center',
     alignItems: "center",
+    width: 380,
+    height: 30,
+  },
+
+  neviButtonText: {
     color: "white",
-    fontSize: 15,
-    width: 180,
+    fontSize: 20,
   },
 
   loginButton: {
-    borderWidth: 3,
+    borderWidth: 1,
     borderColor: "lightblue",
     backgroundColor: "green",
     justifyContent: 'center',
     alignItems: "center",
-    color: "white",
     fontSize: 15,
-    width: 180,
+    width: 94,
   },
 
 
 
   aboutInfo: {
     flex: 20,
-    paddingTop: 20,
+    paddingTop: 10,
+    alignItems: "flex-start",
+    paddingLeft: 10,
+    paddingRight: 10,
   }
 });
 

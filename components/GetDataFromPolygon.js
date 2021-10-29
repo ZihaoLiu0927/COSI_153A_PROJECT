@@ -3,8 +3,6 @@ import { StyleSheet, Text, View, Image, TextInput, Button, FlatList} from 'react
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
-  //const [prices, setPrices] = useState("")
-
   const dateString =(d)=> {
       // If the day is less than 10, add a 0
       let dString = null;

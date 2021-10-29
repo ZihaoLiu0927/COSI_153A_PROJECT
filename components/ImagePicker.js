@@ -23,9 +23,6 @@ const UserImagePicker = (props) => {
   useEffect(() => {getData()},[])
   useEffect(() => {saveAsyncData()}, [image])
 
-  // useEffect(() => {
-  //   pickImage()},[removeImg]
-  // );
 
   const pickImage = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
@@ -42,27 +39,7 @@ const UserImagePicker = (props) => {
     }
   };
 
-  // const askPurpose = () => {
-  //   Alert.alert("what you want to do?",
-  //               "what you want to do?",
-  //     [
-  //       {
-  //         text: "upload new image",
-  //         //onPress: () =>  setRemoveImg(true),
-  //         //console.log("upload new image"),
-  //       },
-  //       {
-  //         text: "remove image",
-  //         //onPress: () =>  setRemoveImg(true),
-  //         //console.log("remove image"),
-  //       }
-  //     ]
-  //   );
-  // }
 
-  // const processClick = () => {
-  //   image ? askPurpose() : setRemoveImg(false);
-  // }
 
   const getData = async () => {
         try {
@@ -113,8 +90,7 @@ const UserImagePicker = (props) => {
 
       <View style={styles.circle}>
         <TouchableOpacity style={styles.button} title="Pick an image from your device" onPress={pickImage} >
-          {!image && <img src={require('../img/defaultFace.png')} />}
-          {image && <Image source={{ uri: image }} style={styles.circle} />}
+          {image != null ? <Image source={{ uri: image }} style={styles.circle} /> : <Image source={require('../img/defaultFace.png')} />}
         </TouchableOpacity>
       </View>
 
@@ -138,7 +114,6 @@ const styles = StyleSheet.create({
       //height:28,
       backgroundColor:'#f76260',
       borderColor:'green',
-      //borderStyle:'solid',
       borderRadius:50,
       //paddingBottom:2
     },

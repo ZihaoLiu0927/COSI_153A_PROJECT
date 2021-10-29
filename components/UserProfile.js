@@ -1,8 +1,7 @@
 import React, { useState, useEffect, Component } from 'react';
 import { StyleSheet, Text, View, Image, TextInput, Button, AppRegistry } from 'react-native';
-import UserImagePicker from './ImagePicker'
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
+import UserImagePicker from './ImagePicker'
 import MyChart from './balanceChart';
 
 
@@ -81,7 +80,7 @@ export default function App() {
           </View>
           <View style={{flex: 1}}>
             <Text style={{fontSize: 22,color: "white", textAlign: 'center'}}>
-              simulated balance: {balance} $
+              Simulated balance: {balance} $
             </Text>
           </View>
 
@@ -91,24 +90,23 @@ export default function App() {
         <View style={{flex:2, flexDirection:'column',
                       justifyContent:'space-around',
                       backgroundColor:'white'}}>
-          <View style={{flex: 1, paddingBottom:15}}>
+          <View style={{flex: 1, paddingBottom:15, backgroundColor: "#3399ff"}}>
             <Text style={{fontSize:38, color: "black"}}>Investing </Text>
           </View>
-          <View style={{flex: 1, paddingBottom:15}}>
+          <View style={{flex: 1, paddingBottom:15, backgroundColor: "#3399ff"}}>
             <Text style={{fontSize:34, color: "white"}}>${invest} </Text>
           </View>
-          <View style={{flex: 1, paddingBottom:15}}>
+          <View style={{flex: 1, paddingBottom:15, backgroundColor: "#3399ff"}}>
             <Text style={{fontSize:34, color: "white"}}> ???</Text>
           </View>
 
-
-          <View style={{flex: 10}}>
+          <View style={{flex: 5, backgroundColor: "#3399ff"}}>
             <MyChart />
           </View>
 
 
         </View>
-        {false && debugView}
+        {false ? debugView : null}
       </View>
   );
 }
@@ -116,15 +114,12 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    width: "500px",
+    width: 350,
     backgroundColor: 'black',
     alignItems: 'stretch',
-    justifyContent: 'stretch',
+    justifyContent: 'space-between',
     flexDirection:'column',
-    margin:'20px',
-    //paddingLeft: '300px',
-    //paddingRight: '300px',
-    //border:'thick solid black',
+    margin:20,
   },
 
   debug: {
