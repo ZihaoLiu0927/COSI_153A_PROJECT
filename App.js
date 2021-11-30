@@ -12,7 +12,7 @@ export default function App() {
     email:"zliu927@brandeis.edu",
     appURL: 'https://glacial-hamlet-05511.herokuapp.com',
     secret: "",
-    changeList: false,
+    userList: [],
   }
 
 

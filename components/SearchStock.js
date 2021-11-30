@@ -22,8 +22,11 @@ export default function SearchStock() {
 
   useEffect(()=> {
     getSearchResults(stock)
-    console.log(stock)
   },[stock])
+
+  useEffect(()=> {
+    setUserList(currentValue.userList)
+  },[currentValue.userList])
 
   const getUserData = async () => {
         try {
@@ -32,6 +35,7 @@ export default function SearchStock() {
           if (jsonValue!=null) {
             data = JSON.parse(jsonValue)
             setUserList(data)
+            setCurrentValue({...currentValue, userList: data})
             console.log('load user previous stock list')
           } else {
             console.log('cannot load user previous stock list')
@@ -55,13 +59,12 @@ export default function SearchStock() {
   }
 
   const addStock = (item) => {
-
     let target = {symbol: item.symbol, name: item.name}
     if (!userList.some(x => x.symbol == target.symbol)) {
       let newArray = [...userList, target]
       setUserList(newArray)
       storeUserData(newArray)
-      setCurrentValue({...currentValue, changeList: true})
+      setCurrentValue({...currentValue, userList: newArray})
     }
     console.log(currentValue)
   }
@@ -69,29 +72,31 @@ export default function SearchStock() {
 
   const getSearchResults = async (string) => {
 
-    //let APIKEY = "QQ3by7yyYj2FDH4vHllM92caW8KJ3LDf3jpEeQ8v";
+    //let APIKEY = "zgQuFYdD9hay3tqJ4O9o7ZU5PGQq41y1BpVE6QDc";
     let APIKEY = "";
     let res = [];
 
     try{
-      let option = {
-        method: 'GET',
-        url: 'https://yfapi.net/v6/finance/autocomplete?region=US&lang=en&query=' + string,
-        headers: {
-          'x-api-key': APIKEY,
+      if (string != "") {
+        let option = {
+          method: 'GET',
+          url: 'https://yfapi.net/v6/finance/autocomplete?region=US&lang=en&query=' + string,
+          headers: {
+            'x-api-key': APIKEY,
+          }
+        };
+        const response = await Axios.request(option);
+        if (response.data) {
+          res = response.data.ResultSet.Result;
         }
-      };
-      const response = await Axios.request(option);
-      console.log(response)
-      if (response.data) {
-        res = response.data.ResultSet.Result;
+      } else {
+          res = []
       }
     }
     catch(e) {
         console.log("error in get search results ")
         console.dir(e)
     }
-    console.log(res)
     setSearchRes(res);
   }
 
@@ -106,7 +111,7 @@ export default function SearchStock() {
 
         <View style = {{flex : 2, justifyContent: "center"}}>
           <TouchableOpacity style = {styles.addButton} onPress = {() => addStock(item)} >
-            <Image source={require('../img/addButton.jpeg')} style={styles.addButton}/>
+            {!userList.some(x => x.symbol == item.symbol) ? <Image source={require('../img/addButton.jpeg')} style={styles.addButton}/> : <Image source={require('../img/checkButton.jpeg')} style={styles.addButton}/> }
           </TouchableOpacity>
         </View>
       </View>

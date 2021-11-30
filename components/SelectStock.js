@@ -6,7 +6,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import StockListElement from "./StockListElement";
 import ValueProvider, {useValue} from './ValueContext';
-import StockScreen from "./StockScreen"
+import StockHomeScreen from "./StockHomeScreen"
 
 
 const Stack = createNativeStackNavigator();
@@ -15,6 +15,12 @@ const SelectStock = () => {
 
   const {currentValue, setCurrentValue} = useValue();
 
+  const [userList, setUserList] = useState([])
+
+  useEffect(()=> {
+    setUserList(currentValue.userList)
+  },[currentValue.userList])
+
   const DynamicList = (stock) => {
     return (
       <Stack.Screen name={stock}>
@@ -22,14 +28,19 @@ const SelectStock = () => {
       </Stack.Screen>
   )};
 
+  const show = (array) => {
+    return (
+      <Stack.Navigator>
+        <Stack.Screen
+          name="Selected Stock List"
+          component={StockHomeScreen}
+        />
+        {array.map((x) => DynamicList(x.symbol))}
+      </Stack.Navigator>
+  )};
+
   return (
-    <Stack.Navigator>
-      <Stack.Screen
-        name="Selected Stock List"
-        component={StockScreen}
-      />
-      {DynamicList("GOOGL")}
-    </Stack.Navigator>
+    show(userList)
   );
 };
 

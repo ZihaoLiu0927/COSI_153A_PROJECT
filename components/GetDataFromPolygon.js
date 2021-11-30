@@ -43,10 +43,6 @@ import Axios from 'axios';
       let res = [];
       //let APIKEY = "zgQuFYdD9hay3tqJ4O9o7ZU5PGQq41y1BpVE6QDc";
       let APIKEY = "";
-      // If no currency is passed in, default to Bitcoin
-      if (!symbol) {
-          symbol = "BTCUSD";
-      }
 
       let startDay = dateString(start);
       // Convert the start date to the proper format

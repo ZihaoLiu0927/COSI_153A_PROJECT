@@ -9,7 +9,21 @@ import ValueProvider, {useValue} from './ValueContext';
 
 const LISTHEIGHT = 60;
 
-const StockScreen = ({ navigation }) => {
+const StockHomeScreen = ({ navigation }) => {
+
+  const {currentValue, setCurrentValue} = useValue();
+
+  const [userList, setUserList] = useState([])
+
+  const [manage, setManage] = useState(false);
+
+  useEffect(()=> {
+    getUserData();
+  },[])
+
+  useEffect(()=> {
+    setUserList(currentValue.userList)
+  },[currentValue.userList])
 
   const getUserData = async () => {
         try {
@@ -18,7 +32,7 @@ const StockScreen = ({ navigation }) => {
           if (jsonValue!=null) {
             data = JSON.parse(jsonValue)
             setUserList(data)
-            setCurrentValue({...currentValue, changeList: false})
+            setCurrentValue({...currentValue, userList: data})
             console.log('load user previous stock list')
           } else {
             console.log('cannot load user previous stock list')
@@ -41,22 +55,12 @@ const StockScreen = ({ navigation }) => {
         }
   }
 
-
-  const {currentValue, setCurrentValue} = useValue();
-
-  const [userList, setUserList] = useState([])
-
-  const [manage, setManage] = useState(false);
-
-  useEffect(()=> {
-    getUserData();
-  },[currentValue.changeList])
-
   const deleteStock = (item) => {
     let res = userList.filter(
       entry => entry.symbol !== item.symbol
     )
     setUserList(res)
+    setCurrentValue({...currentValue, userList: res})
     storeUserData(res)
   }
 
@@ -91,7 +95,7 @@ const StockScreen = ({ navigation }) => {
 
               <View style={{flex:4, height: LISTHEIGHT, backgroundColor: "yellow", alignItems: 'center',justifyContent: 'center'}}>
                 <Text style={{color: "black"}}>
-                  Figure here
+                  {item.symbol}
                 </Text>
               </View>
 
@@ -178,4 +182,4 @@ deleteButton: {
 }
 });
 
-export default StockScreen;
+export default StockHomeScreen;
