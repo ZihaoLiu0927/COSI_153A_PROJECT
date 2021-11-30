@@ -4,7 +4,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { StyleSheet, Text, View, TouchableOpacity, ScrollView, SafeAreaView, FlatList, Image} from 'react-native';
 
-import SPstat from './SPstat'
+import SearchStock from './SearchStock'
 import SelectStock from './SelectStock'
 import UserProfile from './UserProfile'
 
@@ -19,11 +19,11 @@ const MyStack = () => {
 
         <Drawer.Screen name="Home" component={HomeScreen} />
 
-        <Drawer.Screen name="SPstat" component={SPstat} />
+        <Drawer.Screen name="Search Stock" component={SearchStock} />
 
-        <Drawer.Screen name="SelectStock" component={SelectStock} />
+        <Drawer.Screen name="Select Stock" component={SelectStock} />
 
-        <Drawer.Screen name="UserProfile" component={UserProfile} />
+        <Drawer.Screen name="User Profile" component={UserProfile} />
 
       </Drawer.Navigator>
     </NavigationContainer>

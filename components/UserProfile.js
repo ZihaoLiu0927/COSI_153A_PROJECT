@@ -3,10 +3,11 @@ import { StyleSheet, Text, View, Image, TextInput, Button, AppRegistry } from 'r
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import UserImagePicker from './ImagePicker'
 import MyChart from './balanceChart';
-
-
+import {useValue} from './ValueContext';
 
 export default function App() {
+
+  let {currentValue} = useValue()
   const [name, setName] = useState(null);
   const [balance, setBalance] = useState(10000);
   const [invest, setInvest] = useState(9000);
@@ -26,7 +27,7 @@ export default function App() {
 
   const getData = async () => {
         try {
-          const jsonValue = await AsyncStorage.getItem('@usrName')
+          const jsonValue = await AsyncStorage.getItem(currentValue.name + "/image")
           let data = null
           if (jsonValue!=null) {
             data = JSON.parse(jsonValue)
@@ -45,7 +46,7 @@ export default function App() {
   const storeData = async (value) => {
         try {
           const jsonValue = JSON.stringify(value)
-          await AsyncStorage.setItem('@usrName', jsonValue)
+          await AsyncStorage.setItem(currentValue.name + "/image", jsonValue)
           console.log('just stored '+jsonValue)
         } catch (e) {
           console.log("error in storeData ")

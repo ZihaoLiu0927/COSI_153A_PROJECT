@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, Image, TextInput, Button, FlatList} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
+import Axios from 'axios';
 
   const dateString =(d)=> {
       // If the day is less than 10, add a 0
@@ -35,12 +35,14 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
   }
 
 
+
+
 // Pass a date and a valid currency symbol into this function
 // start is a date object and symbol is a stock symbol;
   const getData = async (start, symbol, unit) => {
       let res = [];
-      let APIKEY = "IPmAgPfmEHEspE7y38fMFfhpo8ZdrOzv";
-
+      //let APIKEY = "zgQuFYdD9hay3tqJ4O9o7ZU5PGQq41y1BpVE6QDc";
+      let APIKEY = "";
       // If no currency is passed in, default to Bitcoin
       if (!symbol) {
           symbol = "BTCUSD";
@@ -59,18 +61,44 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
       let endString = endDay.year + "-" + endDay.month + "-" + endDay.day;
 
       try{
-        const response = await fetch(
-          "https://api.polygon.io/v2/aggs/ticker/" + symbol + "/range/1/" + unit + "/" + startString + "/" + endString + "?adjusted=false&sort=asc&limit=10000&apiKey=" + APIKEY
-        );
-        const json = await response.json();
-        if (json.results) {
-          res = json.results
+
+        let option = {
+          method: 'GET',
+          url: 'https://yfapi.net/v8/finance/chart/GOOGL?comparisons=GOOGL&range=6mo&region=US&interval=1d&lang=en&events=div%2Csplit',
+          params: {modules: 'defaultKeyStatistics,assetProfile'},
+          headers: {
+            'x-api-key': APIKEY,
+          }
+        };
+
+        const response = await Axios.request(option);
+        // const response = await fetch(
+        //   "https://api.polygon.io/v2/aggs/ticker/" + symbol + "/range/1/" + unit + "/" + startString + "/" + endString + "?adjusted=false&sort=asc&limit=10000&apiKey=" + APIKEY
+        // );
+        if (response.data) {
+          let data = response.data.chart.result[0].indicators.quote[0];
+          let open = data.open;
+          let high = data.high;
+          let low = data.low;
+          let close = data.close;
+          let volume = data.volume;
+          let timestamp = response.data.chart.result[0].timestamp
+
+          for(let i = 0; i < open.length; i++){
+            res.push({
+                index: i,
+                open: open[i],
+                high: high[i],
+                low: low[i],
+                close: close[i],
+                volume: volume[i],
+                timestamp: new Date(timestamp[i])
+            });
+          }
         }
       }
-        catch(e) {
+      catch(e) {
           console.log("error in getData ")
-          // this shouldn't happen, but its good practice
-          // to check for errors!
           console.dir(e)
           // error reading value
       }

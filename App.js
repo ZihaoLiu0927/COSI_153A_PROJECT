@@ -1,20 +1,24 @@
 import React from 'react';
 import 'react-native-gesture-handler';
 import NavPage from './components/NavPage'
-// import UserImagePicker from './components/ImagePicker.js'
+import ValueProvider from './components/ValueContext';
 
-import UserProfile from './components/UserProfile'
-import MyChart from './components/balanceChart'
-import StockListElement from './components/StockListElement'
-import SelectStock from './components/SelectStock'
-import GetDataFromPolygon from './components/GetDataFromPolygon'
 
 export default function App() {
 
+  const userData =
+  {
+    name: "zihao",
+    email:"zliu927@brandeis.edu",
+    appURL: 'https://glacial-hamlet-05511.herokuapp.com',
+    secret: "",
+    changeList: false,
+  }
+
+
   return (
-    <NavPage />
-    //<SelectStock />
-    //<UserProfile />
-    //<GetDataFromPolygon />
+    <ValueProvider value={userData}>
+      <NavPage />
+    </ValueProvider>
   )
 }

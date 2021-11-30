@@ -1,49 +1,66 @@
 // Include react
 import React, { Component, useEffect, useState } from "react";
 import { StyleSheet, Text, View, Image, TextInput, Button, FlatList} from 'react-native';
-import {VictoryLine, VictoryChart, VictoryTheme, VictoryCursorContainer, VictoryGroup} from "victory-native";
+import {VictoryLine, VictoryChart, VictoryTheme, createContainer, VictorySharedEvents, VictoryCursorContainer, VictoryVoronoiContainer, VictoryTooltip, VictoryLabel, VictoryAxis} from "victory-native";
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {range, first, last,maxBy } from 'lodash';
 
 import {getData, dateString} from "./GetDataFromPolygon";
 
 
 export default function StockListElement(props) {
 
-  const [stockData, setStockData] = useState([]);
-  useEffect(()=> {requestData()}, [])
+  const [chartData, setChartData] = useState([]);
+  const [timeRange, setTimeRange] = useState("minute");
+  const [cursorX, setCursorX] = useState("");
+  const [cursorY, setCursorY] = useState(0);
+  useEffect(()=> {requestChartData()}, [timeRange])
 
-  const requestData = async()=> {
-    const json = await getData(new Date(2021,9,9), props.symbol, "minute");
-    setStockData(json);
+  const requestChartData = async()=> {
+    const json = await getData(new Date(2021,9,9), props.symbol, timeRange);
+    setChartData(json);
+  }
+
+  const changeTime = (newTime) => {
+    setTime(newTime)
+  }
+
+  const dateFormatter = (d) => {
+    let time = d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate() + "-" + d.getHours() + ":" + (d.getMinutes() + 1) + ":" + (d.getSeconds() + 1)
+    return time
   }
 
 
+  const data = range(20,81).map((x) => ({x, y: x*x}));
+
+  const VictoryCursorVoronoiContainer = createContainer( "cursor","voronoi");
+
+  const findClosestPointSorted = (data, value) => {
+    if (value === null) return null;
+      const start = first(data).x;
+      const range = (last(data).x - start);
+    const index = Math.round((value - start)/range * (data.length - 1));
+    return data[index];
+  };
+
+
   return(
-    <View>
-      <View style={{flex: 1, backgroundColor: "black"}}>
-        <Text style={{color: "white", fontSize:60}}>
-          {props.symbol}
+    <View style={{flex: 1, backgroundColor: "black"}}>
+      <View style={{flex: 1, backgroundColor: "green"}}>
+        <Text style={{color: "white", fontSize:20, paddingLeft: 20}}>
+          Date:   {cursorX}
+        </Text>
+        <Text style={{color: "white", fontSize:20, paddingLeft: 20}}>
+          Price:   {cursorY}
         </Text>
       </View>
 
-      <View style={{flex: 2, backgroundColor: "white"}}>
-         <VictoryChart height={150} width={300} padding={{left: 0, top: 5, right: 0, bottom: 30}}
-         containerComponent={
-            <VictoryCursorContainer
-              cursorLabel={({ datum }) => `${Math.round(datum.y, 2)}`}
-            />
-          }>
-          <VictoryLine data={stockData}
-          style={{
-            data: { stroke: "red", strokeWidth: 0.5 },
-            labels: { angle: -90, fill: "white", fontSize: 1 }
-          }}
-          x = "idx" y = "vw" size = {20} />
-         </VictoryChart>
+      <View style={{flex: 5, backgroundColor: "black"}}>
+
       </View>
 
-      <View style={{flex: 1, backgroundColor: "black"}}>
-        <Text style={{color: "white", fontSize:60}}>
+      <View style={{flex: 3, backgroundColor: "white"}}>
+        <Text style={{color: "black", fontSize:20}}>
           Info placeholder
         </Text>
       </View>
