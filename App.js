@@ -15,7 +15,6 @@ export default function App() {
     userList: [],
   }
 
-
   return (
     <ValueProvider value={userData}>
       <NavPage />

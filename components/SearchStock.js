@@ -11,7 +11,7 @@ let LISTHEIGHT = 50;
 export default function SearchStock() {
 
   const {currentValue, setCurrentValue} = useValue();
-  const [userList, setUserList] = useState([])
+  //const [userList, setUserList] = useState([])
   const [stock, setStock] = useState("");
   const [searchRes, setSearchRes] = useState([]);
 
@@ -24,9 +24,9 @@ export default function SearchStock() {
     getSearchResults(stock)
   },[stock])
 
-  useEffect(()=> {
-    setUserList(currentValue.userList)
-  },[currentValue.userList])
+  // useEffect(()=> {
+  //   setUserList(currentValue.userList)
+  // },[currentValue.userList])
 
   const getUserData = async () => {
         try {
@@ -34,12 +34,12 @@ export default function SearchStock() {
           let data = null
           if (jsonValue!=null) {
             data = JSON.parse(jsonValue)
-            setUserList(data)
+            //setUserList(data)
             setCurrentValue({...currentValue, userList: data})
             console.log('load user previous stock list')
           } else {
             console.log('cannot load user previous stock list')
-            setUserList([])
+            //setUserList([])
           }
         } catch(e) {
           console.log("error in getting user previous stock list ")
@@ -60,9 +60,9 @@ export default function SearchStock() {
 
   const addStock = (item) => {
     let target = {symbol: item.symbol, name: item.name}
-    if (!userList.some(x => x.symbol == target.symbol)) {
-      let newArray = [...userList, target]
-      setUserList(newArray)
+    if (!currentValue.userList.some(x => x.symbol == target.symbol)) {
+      let newArray = [...currentValue.userList, target]
+      //setUserList(newArray)
       storeUserData(newArray)
       setCurrentValue({...currentValue, userList: newArray})
     }
@@ -72,8 +72,8 @@ export default function SearchStock() {
 
   const getSearchResults = async (string) => {
 
-    //let APIKEY = "zgQuFYdD9hay3tqJ4O9o7ZU5PGQq41y1BpVE6QDc";
-    let APIKEY = "";
+    let APIKEY = "QQ3by7yyYj2FDH4vHllM92caW8KJ3LDf3jpEeQ8v";
+    //let APIKEY = "";
     let res = [];
 
     try{
@@ -111,7 +111,7 @@ export default function SearchStock() {
 
         <View style = {{flex : 2, justifyContent: "center"}}>
           <TouchableOpacity style = {styles.addButton} onPress = {() => addStock(item)} >
-            {!userList.some(x => x.symbol == item.symbol) ? <Image source={require('../img/addButton.jpeg')} style={styles.addButton}/> : <Image source={require('../img/checkButton.jpeg')} style={styles.addButton}/> }
+            {!currentValue.userList.some(x => x.symbol == item.symbol) ? <Image source={require('../img/addButton.jpeg')} style={styles.addButton}/> : <Image source={require('../img/checkButton.jpeg')} style={styles.addButton}/> }
           </TouchableOpacity>
         </View>
       </View>

@@ -13,7 +13,7 @@ const StockHomeScreen = ({ navigation }) => {
 
   const {currentValue, setCurrentValue} = useValue();
 
-  const [userList, setUserList] = useState([])
+  // const [userList, setUserList] = useState([])
 
   const [manage, setManage] = useState(false);
 
@@ -21,9 +21,9 @@ const StockHomeScreen = ({ navigation }) => {
     getUserData();
   },[])
 
-  useEffect(()=> {
-    setUserList(currentValue.userList)
-  },[currentValue.userList])
+  // useEffect(()=> {
+  //   setUserList(currentValue.userList)
+  // },[currentValue.userList])
 
   const getUserData = async () => {
         try {
@@ -31,12 +31,12 @@ const StockHomeScreen = ({ navigation }) => {
           let data = null
           if (jsonValue!=null) {
             data = JSON.parse(jsonValue)
-            setUserList(data)
+            //setUserList(data)
             setCurrentValue({...currentValue, userList: data})
             console.log('load user previous stock list')
           } else {
             console.log('cannot load user previous stock list')
-            setUserList([])
+            //setUserList([])
           }
         } catch(e) {
           console.log("error in getName ")
@@ -56,10 +56,10 @@ const StockHomeScreen = ({ navigation }) => {
   }
 
   const deleteStock = (item) => {
-    let res = userList.filter(
+    let res = currentValue.userList.filter(
       entry => entry.symbol !== item.symbol
     )
-    setUserList(res)
+    //setUserList(res)
     setCurrentValue({...currentValue, userList: res})
     storeUserData(res)
   }
@@ -84,24 +84,15 @@ const StockHomeScreen = ({ navigation }) => {
           <TouchableOpacity style={styles.button} onPress = {() => navi.navigate(item.symbol)}>
             <View style={{flexDirection: "row"}}>
 
-              <View style={{flex:1, height: LISTHEIGHT, backgroundColor: "green", alignItems: 'flex-start', justifyContent: "space-between"}}>
-                <Text style={{color: "white", fontSize: 10}}>
+              <View style={{flex:1, height: LISTHEIGHT, paddingLeft: 15, backgroundColor: "black", alignItems: 'flex-start', justifyContent: "center"}}>
+                <Text style={{color: "red", fontSize: 15}}>
                   {item.symbol}
                 </Text>
-                <Text style={{color: "white", fontSize: 10}}>
+              </View>
+
+              <View style={{flex:4, height: LISTHEIGHT, paddingLeft: 10, backgroundColor: "black", alignItems: 'flex-start',justifyContent: 'center'}}>
+                <Text style={{color: "white"}}>
                   {item.name}
-                </Text>
-              </View>
-
-              <View style={{flex:4, height: LISTHEIGHT, backgroundColor: "yellow", alignItems: 'center',justifyContent: 'center'}}>
-                <Text style={{color: "black"}}>
-                  {item.symbol}
-                </Text>
-              </View>
-
-              <View style={{flex:1, height: LISTHEIGHT, backgroundColor: "blue", alignItems: 'center',justifyContent: 'center'}}>
-                <Text style={{flex: 1, color: "white"}}>
-                  Price here
                 </Text>
               </View>
 
@@ -126,7 +117,7 @@ const StockHomeScreen = ({ navigation }) => {
         <View style={{flex:15}}>
           <FlatList
             style = {{flex: 1}}
-            data = {userList}
+            data = {currentValue.userList}
             renderItem = {({item}) => (<Item item={item} navi={navigation} />)}
             keyExtractor = {item => item.symbol}
           />

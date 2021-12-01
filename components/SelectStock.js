@@ -15,13 +15,13 @@ const SelectStock = () => {
 
   const {currentValue, setCurrentValue} = useValue();
 
-  const [userList, setUserList] = useState([])
+  // const [userList, setUserList] = useState([])
+  //
+  // useEffect(()=> {
+  //   setUserList(currentValue.userList)
+  // },[currentValue.userList])
 
-  useEffect(()=> {
-    setUserList(currentValue.userList)
-  },[currentValue.userList])
-
-  const DynamicList = (stock) => {
+  const stackList = (stock) => {
     return (
       <Stack.Screen name={stock}>
         {()=> <StockListElement symbol={stock}/>}
@@ -35,12 +35,12 @@ const SelectStock = () => {
           name="Selected Stock List"
           component={StockHomeScreen}
         />
-        {array.map((x) => DynamicList(x.symbol))}
+        {array.map((x) => stackList(x.symbol))}
       </Stack.Navigator>
   )};
 
   return (
-    show(userList)
+    show(currentValue.userList)
   );
 };
 
