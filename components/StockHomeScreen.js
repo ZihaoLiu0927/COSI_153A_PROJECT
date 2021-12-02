@@ -13,17 +13,11 @@ const StockHomeScreen = ({ navigation }) => {
 
   const {currentValue, setCurrentValue} = useValue();
 
-  // const [userList, setUserList] = useState([])
-
   const [manage, setManage] = useState(false);
 
   useEffect(()=> {
     getUserData();
   },[])
-
-  // useEffect(()=> {
-  //   setUserList(currentValue.userList)
-  // },[currentValue.userList])
 
   const getUserData = async () => {
         try {
@@ -81,7 +75,7 @@ const StockHomeScreen = ({ navigation }) => {
       <View style={{flexDirection: "row", height: LISTHEIGHT}}>
         {manage ? <View style={{flex: 1, justifyContent: "center", alignItems: "center"}}>{dButton(item)}</View> : <View></View>}
         <View style={styles.stockList}>
-          <TouchableOpacity style={styles.button} onPress = {() => navi.navigate(item.symbol)}>
+          <TouchableOpacity style={styles.button} onPress = {() => navi.navigate("stock", {symbol: item.symbol})}>
             <View style={{flexDirection: "row"}}>
 
               <View style={{flex:1, height: LISTHEIGHT, paddingLeft: 15, backgroundColor: "black", alignItems: 'flex-start', justifyContent: "center"}}>

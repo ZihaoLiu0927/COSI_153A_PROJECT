@@ -15,19 +15,6 @@ const SelectStock = () => {
 
   const {currentValue, setCurrentValue} = useValue();
 
-  // const [userList, setUserList] = useState([])
-  //
-  // useEffect(()=> {
-  //   setUserList(currentValue.userList)
-  // },[currentValue.userList])
-
-  const stackList = (stock) => {
-    return (
-      <Stack.Screen name={stock}>
-        {()=> <StockListElement symbol={stock}/>}
-      </Stack.Screen>
-  )};
-
   const show = (array) => {
     return (
       <Stack.Navigator>
@@ -35,7 +22,10 @@ const SelectStock = () => {
           name="Selected Stock List"
           component={StockHomeScreen}
         />
-        {array.map((x) => stackList(x.symbol))}
+        <Stack.Screen
+          name = "stock"
+          component={StockListElement}
+        />
       </Stack.Navigator>
   )};
 

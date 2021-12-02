@@ -42,7 +42,8 @@ import Axios from 'axios';
   const getData = async (symbol, range) => {
       let res = [];
       let interval = "";
-      let APIKEY = "QQ3by7yyYj2FDH4vHllM92caW8KJ3LDf3jpEeQ8v";
+      //let APIKEY = "QQ3by7yyYj2FDH4vHllM92caW8KJ3LDf3jpEeQ8v";
+      let APIKEY = "zgQuFYdD9hay3tqJ4O9o7ZU5PGQq41y1BpVE6QDc";
       //let APIKEY = "";
 
       // let startDay = dateString(start);
@@ -138,7 +139,8 @@ import Axios from 'axios';
 
   const getNews = async (symbol) => {
     let res = [];
-    let APIKEY = "QQ3by7yyYj2FDH4vHllM92caW8KJ3LDf3jpEeQ8v";
+    //let APIKEY = "QQ3by7yyYj2FDH4vHllM92caW8KJ3LDf3jpEeQ8v";
+    let APIKEY = "zgQuFYdD9hay3tqJ4O9o7ZU5PGQq41y1BpVE6QDc";
     //let APIKEY = "";
     try {
       let option = {

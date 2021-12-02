@@ -9,7 +9,8 @@ import {range, first, last,maxBy } from 'lodash';
 import {getData, dateString, getNews} from "./GetStockData";
 
 
-export default function StockListElement(props) {
+export default function StockListElement({route, navigation}) {
+  const { symbol } = route.params;
   const [chartData, setChartData] = useState([]);
   const [news, setNews] = useState([]);
   const [selectTime, setSelectTime] = useState("1D");
@@ -22,12 +23,12 @@ export default function StockListElement(props) {
   useEffect(()=> {[requestChartData()]}, [selectTime])
 
   const requestChartData = async()=> {
-    const json = await getData(props.symbol, selectTime);
+    const json = await getData(symbol, selectTime);
     setChartData(json);
   }
 
   const requestNews = async() => {
-    const json = await getNews(props.symbol);
+    const json = await getNews(symbol);
     setNews(json);
   }
 
