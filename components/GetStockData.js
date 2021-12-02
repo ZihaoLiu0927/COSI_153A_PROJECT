@@ -59,7 +59,7 @@ import Axios from 'axios';
 
       if (range == "1D") {
         range = "1d"
-        interval = "15m"
+        interval = "5m"
       } else if (range == "1W") {
         range = "5d"
         interval = "15m"
@@ -81,7 +81,7 @@ import Axios from 'axios';
 
         let option = {
           method: 'GET',
-          url: 'https://yfapi.net/v8/finance/chart/' + symbol + '?comparisons=' + symbol + '&range=' + 'range' + '&region=US&interval=' + interval + '&lang=en&events=div%2Csplit',
+          url: 'https://yfapi.net/v8/finance/chart/' + symbol + '?comparisons=' + symbol + '&range=' + range + '&region=US&interval=' + interval + '&lang=en&events=div%2Csplit',
           params: {modules: 'defaultKeyStatistics,assetProfile'},
           headers: {
             'x-api-key': APIKEY,
@@ -101,7 +101,20 @@ import Axios from 'axios';
           let volume = data.volume;
           let timestamp = response.data.chart.result[0].timestamp
 
+
           for(let i = 0; i < open.length; i++){
+            let type = "";
+            let q1 = 0;
+            let q3 = 0;
+            if (open[i] < close[i]) {
+              type = "red";
+              q1 = open[i];
+              q3 = close[i];
+            } else {
+              type = "green";
+              q1 = close[i];
+              q3 = open[i];
+            }
             res.push({
                 index: i,
                 open: open[i],

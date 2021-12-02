@@ -1,7 +1,7 @@
 // Include react
 import React, { Component, useEffect, useState } from "react";
 import { StyleSheet, Text, View, Image, FlatList, TouchableOpacity} from 'react-native';
-import {VictoryLine, VictoryChart, VictoryTheme, LineSegment, createContainer, VictoryScatter, VictoryCursorContainer, VictoryVoronoiContainer, VictoryTooltip, VictoryLabel, VictoryAxis} from "victory-native";
+import {VictoryLine, VictoryChart, VictoryTheme, LineSegment, VictoryCandlestick, VictoryScatter, VictoryCursorContainer, VictoryVoronoiContainer, VictoryTooltip, VictoryLabel, VictoryAxis} from "victory-native";
 import Svg, {Line} from 'react-native-svg';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {range, first, last,maxBy } from 'lodash';
@@ -116,14 +116,13 @@ export default function StockListElement(props) {
              cursorComponent={<LineSegment style = {{stroke: "white"}}/>} />
            } >
 
-           <VictoryLine data={chartData}
-             scale = {{x: "time", y: "linear"}}
+           <VictoryCandlestick data={chartData}
+             scale = {{x: "time"}}
+             candleColors={{ positive: "red", negative: "green" }}
              style={{
-               data: { stroke: "red", strokeWidth: 3 },
+               data: { stroke: "white", strokeWidth: 0.5 },
              }}
-             size = {20}
-             x = "timestamp"
-             y = "close" />
+            />
 
         </VictoryChart>
         <View style = {{flex:1}}>
