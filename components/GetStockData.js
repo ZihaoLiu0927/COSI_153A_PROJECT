@@ -59,7 +59,7 @@ import Axios from 'axios';
 
       if (range == "1D") {
         range = "1d"
-        interval = "1m"
+        interval = "15m"
       } else if (range == "1W") {
         range = "5d"
         interval = "15m"
@@ -109,7 +109,7 @@ import Axios from 'axios';
                 low: low[i],
                 close: close[i],
                 volume: volume[i],
-                timestamp: new Date(timestamp[i])
+                timestamp: new Date(timestamp[i] * 1000)
             });
           }
         }
