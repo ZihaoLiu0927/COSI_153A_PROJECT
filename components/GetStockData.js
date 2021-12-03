@@ -35,28 +35,13 @@ import Axios from 'axios';
   }
 
 
-
-
-// Pass a date and a valid currency symbol into this function
-// start is a date object and symbol is a stock symbol;
   const getData = async (symbol, range) => {
       let res = [];
       let interval = "";
-      //let APIKEY = "QQ3by7yyYj2FDH4vHllM92caW8KJ3LDf3jpEeQ8v";
-      let APIKEY = "zgQuFYdD9hay3tqJ4O9o7ZU5PGQq41y1BpVE6QDc";
+      let APIKEY = "QQ3by7yyYj2FDH4vHllM92caW8KJ3LDf3jpEeQ8v";
+      //let APIKEY = "zgQuFYdD9hay3tqJ4O9o7ZU5PGQq41y1BpVE6QDc";
+      //let APIKEY = "0YBP97HE2M1LF775VY62j1kjODF2Xpsz3Zkvevj0";
       //let APIKEY = "";
-
-      // let startDay = dateString(start);
-      // // Convert the start date to the proper format
-      // // Create the new end date
-      // const end = new Date(start);
-      // end.setDate(start.getDate() + 1);
-      // // let endDay = dateString(end);
-      //
-      // // Convert the end date to the proper format
-      // // Combine the dates into the right string format
-      // let startString = startDay.year + "-" + startDay.month + "-" + startDay.day;
-      // let endString = endDay.year + "-" + endDay.month + "-" + endDay.day;
 
       if (range == "1D") {
         range = "1d"
@@ -139,8 +124,9 @@ import Axios from 'axios';
 
   const getNews = async (symbol) => {
     let res = [];
-    //let APIKEY = "QQ3by7yyYj2FDH4vHllM92caW8KJ3LDf3jpEeQ8v";
-    let APIKEY = "zgQuFYdD9hay3tqJ4O9o7ZU5PGQq41y1BpVE6QDc";
+    let APIKEY = "QQ3by7yyYj2FDH4vHllM92caW8KJ3LDf3jpEeQ8v";
+    //let APIKEY = "zgQuFYdD9hay3tqJ4O9o7ZU5PGQq41y1BpVE6QDc";
+    //let APIKEY = "0YBP97HE2M1LF775VY62j1kjODF2Xpsz3Zkvevj0";
     //let APIKEY = "";
     try {
       let option = {

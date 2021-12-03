@@ -29,6 +29,7 @@ export default function StockListElement({route, navigation}) {
 
   const requestNews = async() => {
     const json = await getNews(symbol);
+    console.log(json)
     setNews(json);
   }
 
@@ -99,17 +100,17 @@ export default function StockListElement({route, navigation}) {
 
   return(
     <View style={{flex: 1, backgroundColor: "black"}}>
-      <View style={{flex: 1, backgroundColor: "green"}}>
+      <View style={{flex: 1, backgroundColor: "red"}}>
         <Text style={{color: "white", fontSize:20, paddingLeft: 20}}>
-          Date:   {cursor.time}
+          {symbol}:   {cursor.time}
         </Text>
         <Text style={{color: "white", fontSize:20, paddingLeft: 20}}>
-          Price:   {cursor.price}
+          Price:  $ {cursor.price}
         </Text>
       </View>
 
       <View style={{flex: 7, backgroundColor: "black"}}>
-        <VictoryChart height={340} width={380} padding={{left: 20, top: 5, right: 20, bottom: 0}}
+        <VictoryChart height={340} width={380} padding={{left: 10, top: 20, right: 20, bottom: 10}}
           style={{ background: { fill: "black" } }}
           containerComponent={
              <VictoryCursorContainer
@@ -118,10 +119,14 @@ export default function StockListElement({route, navigation}) {
            } >
 
            <VictoryCandlestick data={chartData}
+             x = "timestamp"
              scale = {{x: "time"}}
              candleColors={{ positive: "red", negative: "green" }}
              style={{
                data: { stroke: "white", strokeWidth: 0.5 },
+               axis: {stroke: "transparent"},
+               ticks: {stroke: "transparent"},
+               tickLabels: { fill:"transparent"}
              }}
             />
 

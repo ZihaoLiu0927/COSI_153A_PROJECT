@@ -68,8 +68,9 @@ export default function SearchStock() {
 
   const getSearchResults = async (string) => {
 
-    //let APIKEY = "QQ3by7yyYj2FDH4vHllM92caW8KJ3LDf3jpEeQ8v";
-    let APIKEY = "zgQuFYdD9hay3tqJ4O9o7ZU5PGQq41y1BpVE6QDc";
+    //let APIKEY = "0YBP97HE2M1LF775VY62j1kjODF2Xpsz3Zkvevj0";
+    let APIKEY = "QQ3by7yyYj2FDH4vHllM92caW8KJ3LDf3jpEeQ8v";
+    //let APIKEY = "zgQuFYdD9hay3tqJ4O9o7ZU5PGQq41y1BpVE6QDc";
     //let APIKEY = "";
     let res = [];
 
