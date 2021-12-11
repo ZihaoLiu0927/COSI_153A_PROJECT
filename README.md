@@ -17,7 +17,7 @@ SnapShot:
 Modules and components used in this App:
 <br/>
 
-- React Native: StyleSheet, Text, View, TouchableOpacity, ScrollView, SafeAreaView, FlatList, Image, Alert, Platform, useContext, createContext <br/>
+- React Native: StyleSheet, Text, View, TouchableOpacity, ScrollView, SafeAreaView, FlatList, Image, Alert, Platform, useContext, createContext
 - Expo-image-picker; 
 - Async-storage; 
 - React-navigation;
