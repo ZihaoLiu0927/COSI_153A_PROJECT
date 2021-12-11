@@ -1,6 +1,6 @@
 # cs153aFall21
-App name: Stock Simulator App
-About: a mobile App in response to the course COSI_153A (Mobile Application Development). The application can be used to add/remove stock in a list and observe the price changes of stocks of interest. Stocks data was pulled from Yahoo Finance API (https://www.yahoofinanceapi.com/). It also can be used to simulator stock trade. The App is only developed for course exercise.
+App name: Stock Simulator App <br/>
+About: a mobile App in response to the course COSI_153A (Mobile Application Development). The application can be used to add/remove stock in a list and observe the price changes of stocks of interest. Stocks data was pulled from Yahoo Finance API (https://www.yahoofinanceapi.com/). It also can be used to simulator stock trade. The App is only developed for course exercise. <br/>
 
 SnapShot:
 <div align="center">
@@ -13,16 +13,16 @@ SnapShot:
   <img width = "300" height = "500" src = "https://user-images.githubusercontent.com/66043240/144552038-9bb019be-90cc-428f-a99c-2d8f0f77778f.jpg" />
 </dib>
 
-Developer notes:
-Modules and components used in this App:
-React Native: StyleSheet, Text, View, TouchableOpacity, ScrollView, SafeAreaView, FlatList, Image, Alert, Platform, useContext, createContext
-Expo-image-picker;
-Async-storage;
-React-navigation;
-VictoryChart;
-Victory-native;
-React-native-svg;
-Axios;
+<br/>
+Modules and components used in this App: <br/>
+React Native: StyleSheet, Text, View, TouchableOpacity, ScrollView, SafeAreaView, FlatList, Image, Alert, Platform, useContext, createContext <br/>
+Expo-image-picker; <br/>
+Async-storage; <br/>
+React-navigation; <br/>
+VictoryChart; <br/>
+Victory-native; <br/> 
+React-native-svg; <br/>
+Axios; <br/>
 
 A demo to illustrate that the App satisfies all the requirement of the course rubic: 
 https://github.com/ZihaoLiu0927/COSI_153A_PROJECT
