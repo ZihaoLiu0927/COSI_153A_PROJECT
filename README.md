@@ -17,14 +17,14 @@ SnapShot:
 Modules and components used in this App:
 <br/>
 
-- React Native: StyleSheet, Text, View, TouchableOpacity, ScrollView, SafeAreaView, FlatList, Image, Alert, Platform, useContext, createContext
-- Expo-image-picker 
-- Async-storage
-- React-navigation
-- VictoryChart
-- Victory-native  
-- React-native-svg 
-- Axios
+.left [- React Native: StyleSheet, Text, View, TouchableOpacity, ScrollView, SafeAreaView, FlatList, Image, Alert, Platform, useContext, createContext
+- Expo-image-picker ]
+.left [- Async-storage]
+.left [- React-navigation]
+.left [- VictoryChart]
+.left [- Victory-native]  
+.left [- React-native-svg]
+.left [- Axios]
 
 A demo to illustrate that the App satisfies all the requirement of the course rubic: 
 https://github.com/ZihaoLiu0927/COSI_153A_PROJECT
