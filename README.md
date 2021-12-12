@@ -26,5 +26,5 @@ Modules and components used in this App:
 - Axios
 
 A demo to illustrate that the App satisfies all the requirement of the course rubic: 
-https://github.com/ZihaoLiu0927/COSI_153A_PROJECT
+https://drive.google.com/drive/folders/16uSbOSELWE8KmqCbMygHcjS3ZrJiCDSJ?usp=sharing
 </div>
