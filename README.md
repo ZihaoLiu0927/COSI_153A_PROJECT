@@ -25,6 +25,4 @@ Modules and components used in this App:
 - React-native-svg
 - Axios
 
-A demo to illustrate that the App satisfies all the requirement of the course rubic: 
-https://drive.google.com/drive/folders/16uSbOSELWE8KmqCbMygHcjS3ZrJiCDSJ?usp=sharing
 </div>
